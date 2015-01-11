@@ -1,0 +1,12 @@
+{"mounts": [
+	{"path": "/mnt/sata1", "metric": "sata1"},
+	{"path": "/mnt/sata2", "metric": "sata2"},
+	{"path": "/mnt/sata3", "metric": "sata3"},
+	{"path": "/mnt/sata4", "metric": "sata4"},
+	{"path": "/mnt/sata5", "metric": "sata5"},
+	{"path": "/mnt/sata6", "metric": "sata6"},
+	{"path": "/mnt/sata7", "metric": "sata7"},
+	{"path": "/mnt/sata8", "metric": "sata8"},
+	{"path": "/mnt/sata9", "metric": "sata9"},
+	{"path": "/mnt/sata10", "metric": "sata10"}
+]}
