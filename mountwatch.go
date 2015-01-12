@@ -57,7 +57,6 @@ func submit(address string, buffer *bytes.Buffer) {
 func monitor(prefix string, mounts []mount, address string, interval int64) {
 	for {
 		buffer := check(prefix, mounts)
-		fmt.Print(buffer)
 		submit(address, buffer)
 		time.Sleep(time.Duration(interval) * time.Second)
 	}
