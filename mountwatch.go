@@ -42,17 +42,18 @@ func check(prefix string, mounts []mount) *bytes.Buffer {
 }
 
 func submit(address string, buffer *bytes.Buffer) {
+	if address == "" {
+		return
+	}
 	var clientGraphite net.Conn
-	if address != "" {
-		var err error
-		clientGraphite, err = net.Dial("tcp", address)
-		if clientGraphite != nil {
-			// Run this when we're all done, only if clientGraphite was opened.
-			defer clientGraphite.Close()
-		}
-		if err != nil {
-			log.Printf(err.Error())
-		}
+	var err error
+	clientGraphite, err = net.Dial("tcp", address)
+	if clientGraphite != nil {
+		// Run this when we're all done, only if clientGraphite was opened.
+		defer clientGraphite.Close()
+	}
+	if err != nil {
+		log.Printf(err.Error())
 	}
 	clientGraphite.Write(buffer.Bytes())
 }
