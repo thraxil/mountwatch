@@ -42,14 +42,10 @@ func check(prefix string, mounts []mount) *bytes.Buffer {
 }
 
 func submit(address string, buffer *bytes.Buffer) {
-	if address == "" {
-		return
-	}
 	var clientGraphite net.Conn
 	var err error
 	clientGraphite, err = net.Dial("tcp", address)
 	if clientGraphite != nil {
-		// Run this when we're all done, only if clientGraphite was opened.
 		defer clientGraphite.Close()
 	}
 	if err != nil {
@@ -77,6 +73,9 @@ func main() {
 	err = json.Unmarshal(file, &c)
 	if err != nil {
 		log.Fatal(err)
+	}
+	if *graphiteAddress == "" {
+		log.Fatal("need a graphite server address to submit to")
 	}
 	monitor(*prefix, c.Mounts, *graphiteAddress, *interval)
 }
