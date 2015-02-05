@@ -45,11 +45,13 @@ func submit(address string, buffer *bytes.Buffer) {
 	var clientGraphite net.Conn
 	var err error
 	clientGraphite, err = net.Dial("tcp", address)
-	if clientGraphite != nil {
-		defer clientGraphite.Close()
-	}
 	if err != nil {
 		log.Printf(err.Error())
+		// can't connect to the graphite server right now.
+		return
+	}
+	if clientGraphite != nil {
+		defer clientGraphite.Close()
 	}
 	clientGraphite.Write(buffer.Bytes())
 }
